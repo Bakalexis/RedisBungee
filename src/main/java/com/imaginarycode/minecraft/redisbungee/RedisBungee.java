@@ -104,7 +104,7 @@ public final class RedisBungee extends Plugin {
                     long stamp = Long.parseLong(entry.getValue());
                     if (lagged ? time >= stamp + 30 : time <= stamp + 30)
                         servers.add(entry.getKey());
-                    else if (nag && nagTime <= 0) {
+                    else if (nag && nagTime <= 0 && !configuration.isdeleteOldProxies()) {
                         getLogger().severe(entry.getKey() + " is " + (time - stamp) + " seconds behind! (Time not synchronized or server down?)");
                     }
                 } catch (NumberFormatException ignored) {

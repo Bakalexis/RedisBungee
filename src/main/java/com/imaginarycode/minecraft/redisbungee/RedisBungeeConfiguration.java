@@ -18,12 +18,14 @@ public class RedisBungeeConfiguration {
     private final boolean registerBungeeCommands;
     @Getter
     private final List<InetAddress> exemptAddresses;
+    @Getter
+    private final boolean deleteOldProxies;
 
     public RedisBungeeConfiguration(JedisPool pool, Configuration configuration) {
         this.pool = pool;
         this.serverId = configuration.getString("server-id");
         this.registerBungeeCommands = configuration.getBoolean("register-bungee-commands", true);
-
+        this.deleteOldProxies = configuration.getBoolean("deleteOldProxies", false);
         List<String> stringified = configuration.getStringList("exempt-ip-addresses");
         ImmutableList.Builder<InetAddress> addressBuilder = ImmutableList.builder();
 
